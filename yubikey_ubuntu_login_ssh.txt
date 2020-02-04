@@ -1,0 +1,38 @@
+## Use a Yubikey on Ubuntu for Login and sudo
+
+Install the yubico repositories:
+
+    sudo add-apt-repository ppa:yubico/stable && sudo apt-get update
+
+Install required software:
+
+    sudo apt-get install libpam-yubico yubikey-manager
+
+Configure the Yubikey
+
+    sudo ykman otp chalresp -g 2
+
+Associate the Yubikey with the Account
+
+    ykpamcfg -2
+
+This will create a file at: /home/<USER>/.yubico/challenge-<SERIAL>
+
+Configure Sudo to use the Yubikey 
+
+    sudo vi /etc/pam.d/sudo
+
+Add the following line below '@include common-auth':
+
+    auth	required	pam_yubico.so mode=challenge-response
+
+Configure use Yubikey on login
+
+    sudo vi /etc/pam.d/gdm-password
+
+Add the following line below '@include common-auth':
+
+    auth required pam_yubico.so mode-challenge-response
+
+
+Reference: https://support.yubico.com/support/solutions/articles/15000011355-ubuntu-linux-login-guide-challenge-response

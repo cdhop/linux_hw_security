@@ -1,0 +1,37 @@
+## Use a U2F device on Ubuntu for Login and sudo
+
+Install the yubico repositories:
+
+    sudo add-apt-repository ppa:yubico/stable && sudo apt-get update
+
+Install required software:
+
+    sudo apt-get install libpam-u2f
+
+Associate the U2F device with the Account
+
+Create a Yubico directory: mkdir ~/.config/Yubico
+
+Create a u2f_keys file
+
+    pamu2fcfg > ~/.config/Yubico/u2f_keys
+
+
+Configure Sudo to use the Yubikey 
+
+    sudo vi /etc/pam.d/sudo
+
+Add the following line below '@include common-auth':
+
+    auth	required	pam_u2f.so
+
+Configure use Yubikey on login
+
+    sudo vi /etc/pam.d/gdm-password
+
+Add the following line below '@include common-auth':
+
+    auth required pam_u2f.so
+
+
+Reference: https://support.yubico.com/support/solutions/articles/15000011356-ubuntu-linux-login-guide-u2f

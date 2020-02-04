@@ -1,0 +1,7 @@
+Get the Device ID for the device you want to lock the account if removed
+
+    sudo lsusb -v | grep idProduct
+
+Create a udev rule (80-lockaccount.rules)
+
+ACTION=="remove", ATTRS{idProduct}=="0010", RUN+="/bin/loginctl lock-sessions"

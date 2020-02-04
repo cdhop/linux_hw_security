@@ -1,0 +1,12 @@
+Trezor/Ledge/etc Agent Installation Documentation:
+https://github.com/romanz/trezor-agent/blob/master/doc/INSTALL.md
+
+Yubikey Documentation:
+https://support.yubico.com/support/solutions
+
+Nitrokey Applications Documentation:
+https://nitrokey.com/documentation/applications
+
+Trezor Agent Documentation: 
+https://github.com/romanz/trezor-agent
+

@@ -1,0 +1,14 @@
+Update repositories and install required software
+
+    sudo apt-get update
+    sudo apt-get install yubikey-luks
+
+Configure the Yubikey
+
+    sudo ykpersonalize -2 -ochal-resp -ochal-hmac -ohmac-lt64 -oserial-api-visible
+
+Enroll your Yubikey in LUKS
+
+    sudo yubikey-luks-enroll -d /dev/<LUKSDEVICE>
+
+Reference: https://www.howtoforge.com/ubuntu-two-factor-authentication-with-yubikey-for-harddisk-encryption-with-luks
